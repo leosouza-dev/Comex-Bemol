@@ -1,9 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-
+﻿
+using test;
 
 string mensagemDeBoasVindas = "Boas Vindas ao COMEX!!!!";
-List<string> listaDeProdutos = new List<string>();
+
+List<Produto> listaDeProdutos = new List<Produto>();
 void ExibirLogo()
 {
     Console.WriteLine(@"
@@ -59,7 +59,7 @@ void ListarProdutos()
 
     foreach (var produto in listaDeProdutos)
     {
-        Console.WriteLine($"Produto: {produto}");
+        Console.WriteLine($"Produto: {produto.Nome}, Preço: {produto.PrecoUnitario:f2}");
     }
 
     Console.WriteLine("\n Digite uma tecla para voltar ao menu principal");
@@ -75,10 +75,25 @@ void CriarProduto()
     ExibirTituloDaOpcao("Registro de Produto");
 
     Console.Write("Digite o nome do Produto: ");
-    string produto = Console.ReadLine();
+    string nomeProduto = Console.ReadLine();
+
+    Console.Write("Digite a descrição do Produto: ");
+    string descricaoProduto = Console.ReadLine();
+
+    Console.Write("Digite o Preço do Produto: ");
+    double precoProduto = double.Parse(Console.ReadLine());
+
+    Console.Write("Digite a Quantidade do Produto: ");
+    int quantidadeProduto = int.Parse(Console.ReadLine());
+
+    var produto = new Produto(nomeProduto);
+    produto.PrecoUnitario = precoProduto;
+    produto.Descricao = descricaoProduto;
+    produto.Quantidade = quantidadeProduto;
+
     listaDeProdutos.Add(produto);
 
-    Console.WriteLine($"O Produto {produto} foi registrado com sucesso!");
+    Console.WriteLine($"O Produto {produto.Nome} foi registrado com sucesso!");
     Console.WriteLine("\n Digite uma tecla para voltar ao menu principal");
     Console.ReadKey();
     Console.Clear();
