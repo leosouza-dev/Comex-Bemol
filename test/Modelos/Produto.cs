@@ -1,4 +1,6 @@
-﻿namespace test.Modelos;
+﻿using System.Text.Json.Serialization;
+
+namespace test.Modelos;
 
 public class Produto
 {
@@ -7,8 +9,11 @@ public class Produto
         Nome = nome;
     }
 
+    [JsonPropertyName("title")]
     public string Nome { get; set; }
+    [JsonPropertyName("description")]
     public string Descricao { get; set; }
+    [JsonPropertyName("price")]
     public double PrecoUnitario { get; set; }
     public int Quantidade { get; set; }
 }

@@ -22,11 +22,12 @@ void ExibirLogo()
     Console.WriteLine(mensagemDeBoasVindas);
 }
 
-void ExbibirOpcoesDoMenu()
+async Task ExbibirOpcoesDoMenu()
 {
     ExibirLogo();
     Console.WriteLine("\nDigite 1 para Criar Produto");
     Console.WriteLine("Digite 2 para Listar Produtos");
+    Console.WriteLine("Digite 3 para Consulta a API Externa");
     Console.WriteLine("Digite -1 para sair");
 
     Console.Write("\nDigite a sua opção: ");
@@ -37,11 +38,15 @@ void ExbibirOpcoesDoMenu()
     {
         case 1:
             new MenuCriarProduto().Executar(listaDeProdutos);
-            ExbibirOpcoesDoMenu();
+            await ExbibirOpcoesDoMenu();
             break;
         case 2:
             new MenuListarProdutos().Executar(listaDeProdutos);
-            ExbibirOpcoesDoMenu();
+            await ExbibirOpcoesDoMenu();
+            break;
+        case 3:
+            await new MenuConsultarApiExterna().Executar();
+            await ExbibirOpcoesDoMenu();
             break;
         case -1:
             Console.WriteLine("Saindo do Programa...");
@@ -52,4 +57,4 @@ void ExbibirOpcoesDoMenu()
     }
 }
 
-ExbibirOpcoesDoMenu();
+await ExbibirOpcoesDoMenu();
