@@ -1,6 +1,6 @@
-﻿namespace test;
+﻿namespace test.Modelos;
 
-internal class Produto
+public class Produto
 {
     public Produto(string nome)
     {

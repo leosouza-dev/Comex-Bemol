@@ -1,6 +1,6 @@
-﻿namespace test
+﻿namespace test.Modelos
 {
-    internal class Endereco
+    public class Endereco
     {
         public string Bairro { get; set; }
         public string Cidade { get; set; }
