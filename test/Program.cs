@@ -2,7 +2,36 @@
 using test.Modelos;
 
 string mensagemDeBoasVindas = "Boas Vindas ao COMEX!!!!";
-List<Produto> listaDeProdutos = new List<Produto>();
+List<Produto> listaDeProdutos = new List<Produto>
+{
+    new Produto("Notebook")
+    {
+        Descricao = "Notebook Dell Inspiron",
+        PrecoUnitario = 5500.00,
+        Quantidade = 10
+    },
+    new Produto("Smartphone")
+    {
+        Descricao = "Smartphone Samsung Galaxy",
+        PrecoUnitario = 3500.00,
+        Quantidade = 25
+    },
+    new Produto("Monitor")
+    {
+        Descricao = "Monitor LG Ultrawide",
+        PrecoUnitario = 1500.00,
+        Quantidade = 15
+    },
+    new Produto("Teclado")
+    {
+        Descricao = "Teclado Mecânico RGB",
+        PrecoUnitario = 500.00,
+        Quantidade = 50
+    },
+};
+
+var listaDePedidos = new List<Pedido>();
+
 void ExibirLogo()
 {
     Console.WriteLine(@"
@@ -30,6 +59,8 @@ async Task ExbibirOpcoesDoMenu()
     Console.WriteLine("Digite 3 para Consulta a API Externa");
     Console.WriteLine("Digite 4 para Ordenar Produtos Pelo Titulo");
     Console.WriteLine("Digite 5 para Ordenar Produtos Pelo Preco");
+    Console.WriteLine("Digite 6 para Criar um Pedido");
+    Console.WriteLine("Digite 7 para Listar os Pedidos");
     Console.WriteLine("Digite -1 para sair");
 
     Console.Write("\nDigite a sua opção: ");
@@ -56,6 +87,14 @@ async Task ExbibirOpcoesDoMenu()
             break;
         case 5:
             new MenuOrdernarProdutosPorPreco().Executar(listaDeProdutos);
+            await ExbibirOpcoesDoMenu();
+            break;
+        case 6:
+            new MenuCriarPedido().Executar(listaDeProdutos, listaDePedidos);
+            await ExbibirOpcoesDoMenu();
+            break;
+        case 7:
+            new MenuListarPedidos().Executar(listaDePedidos);
             await ExbibirOpcoesDoMenu();
             break;
         case -1:
