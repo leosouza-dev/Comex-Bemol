@@ -28,6 +28,8 @@ async Task ExbibirOpcoesDoMenu()
     Console.WriteLine("\nDigite 1 para Criar Produto");
     Console.WriteLine("Digite 2 para Listar Produtos");
     Console.WriteLine("Digite 3 para Consulta a API Externa");
+    Console.WriteLine("Digite 4 para Ordenar Produtos Pelo Titulo");
+    Console.WriteLine("Digite 5 para Ordenar Produtos Pelo Preco");
     Console.WriteLine("Digite -1 para sair");
 
     Console.Write("\nDigite a sua opção: ");
@@ -46,6 +48,14 @@ async Task ExbibirOpcoesDoMenu()
             break;
         case 3:
             await new MenuConsultarApiExterna().Executar();
+            await ExbibirOpcoesDoMenu();
+            break;
+        case 4:
+            new MenuOrdernarProdutosPorTitulo().Executar(listaDeProdutos);
+            await ExbibirOpcoesDoMenu();
+            break;
+        case 5:
+            new MenuOrdernarProdutosPorPreco().Executar(listaDeProdutos);
             await ExbibirOpcoesDoMenu();
             break;
         case -1:
